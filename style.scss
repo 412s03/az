@@ -1,0 +1,462 @@
+// 変数とリセット
+@use 'sass/reset' as *;  // リセットSCSS
+@use 'sass/variables' as *;  // カラーやフォントサイズ変数
+@use 'sass/mixins' as *;    // レスポンシブ
+
+//body
+body {
+    .btn {
+        padding: 15px 30px;
+        border-radius: 30px;
+        display: inline-block;
+        background-color: $color-sub;
+        font-weight: bold;
+        transition: all 0.1s ease;
+    }
+}
+
+//header
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); /* もっと透けた背景 */
+    backdrop-filter: blur(5px);
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin: 10px auto;
+        font-weight: bolder;
+        a {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+        .nav {
+            ul {
+                display: flex;
+                gap: 40px;
+                li {
+                    transition: color 0.3s ease-out ,transform 0.3s ease-out;
+                    &:hover {
+                        transform: scale(1.1);
+                        color: $color-main;
+                    }
+                    a {
+                        padding-bottom: 3px;
+                        border-bottom: 1px solid #000;
+                        border-bottom: 2px solid transparent;
+                    }
+                }
+            }
+        }
+        .hamburger {
+            display: none;
+        }
+        .mobile-nav {
+            display: none;
+        }
+        @media screen and (max-width: 768px){
+            .nav {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .mobile-nav {
+                background-color: $color-main;
+                color: #f0f0f0;
+                position: fixed;
+                right: 0;
+                top: 0;
+                width: 60%;
+                height: 100vh;
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    padding-top: 2rem;
+                    padding-left: 2rem;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+}
+
+//main
+main {
+    .sec-title {
+        font-weight: bolder;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 60px;
+        p {
+            color: $color-main;
+            font-size: clamp(1rem, 0.814rem + 0.76vw, 1.5rem);
+        }
+        h2 {
+            font-size: clamp(1.5rem, 0.682rem + 4.09vw, 3.75rem);
+        }
+    }
+    .sec-content {
+        margin: 0 auto;
+        h3 {
+            font-size: clamp(1.25rem, 0.648rem + 2.47vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: clamp(30px, 5vh, 60px);
+        }
+        p {
+            text-align: left;
+        }
+        .about-us-p {
+            margin-bottom: 60px;
+            line-height: 180%;
+        }
+    }
+    section {
+        margin-bottom: 60px;
+        padding: 60px 0;
+    }
+    .main-visual {
+        margin-top: 100px;
+        text-align: center;
+        .main-visual-wrap{
+            width: clamp(80%, 80%, 60%); /* 最小20px, 最大76px */
+            // width: 66%;
+            margin: 0 auto;
+            h2 {
+                font-size: clamp(20px, 5vw, 70px); /* 最小20px, 最大76px */
+                white-space: nowrap; /* 改行を防ぐ */
+                overflow: hidden; /* はみ出しを隠す（必要なら） */
+                font-weight: 600;
+            }
+            img {
+                width: 70%;
+                margin: 0 auto;
+            }
+        }
+    }
+    .about-us {
+        margin-bottom: 0px !important;
+        background-color: #f2f2f2;
+        border-radius: 0px calc(clamp(140px, 15vw, 280px)) 0px 0px;        .sec-title {
+        justify-content: center;
+        text-align: center;
+        }
+        .sec-content {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: clamp(350px, 90%, 900px);
+            .about-card-section {
+                display: flex;
+                justify-content: space-between;
+                text-align: center;
+                gap: 15px;
+                @include rsp("sm") {
+                    flex-direction: column;
+                }
+                .about-card-box {
+                    flex: 1; 
+                    text-align: center; 
+                    }
+                img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 10px;
+                    margin-bottom: 16px;
+                    @include rsp("sm") {
+                        margin: 0 auto;
+                        aspect-ratio: 16 / 9; /* 縦横比を指定 */
+                        object-fit: cover;
+                        margin-bottom: 24px;
+                        border-radius: 5px;
+                    }
+                }
+                h4 {
+                    font-size: clamp(1.25rem, 1.13rem + 0.49vw, 1.5rem);
+                    font-weight: bolder;
+                    margin-bottom: 12px;
+                }
+                .card-title {
+                    font-size: clamp(1rem, 0.907rem + 0.38vw, 1.25rem);
+                    margin: 0 auto 15px;
+                    text-align: center !important;
+                    font-weight: 500;
+                }
+                .card-content {
+                    text-align: left;
+                    margin:  0 auto;
+                    margin-bottom: 30px !important;
+                }
+            }
+        }
+    }
+    .price {
+        background-color: #f2f2f2;
+        margin-bottom: 0 !important;
+        padding-bottom: 120px;
+        .price-bg-box {
+            background-color: #fff;
+            max-width: 1260px; /* PCの最大幅 */
+            width: 80%;
+            margin: 0 auto; /* 中央寄せ */
+            box-sizing: border-box; /* パディングを含めた幅計算 */
+            border-radius: clamp(30px, 5vw, 80px);
+            padding: clamp(24px, 5vw, 120px);
+            .sec-content {
+                line-height: 180%;
+                .no-wrap {
+                    white-space: nowrap; /* テキストの改行を抑制 */
+                }
+                p {
+                    margin-bottom: 32px;
+                }
+                .price-btn {
+                    display: flex;
+                    gap: 20px;
+                    @include rsp("sm") {
+                        flex-direction: column;
+                        width: 80%;
+                        margin: 0 auto;
+                        a {
+                            text-align: center;
+                        }
+                    }
+                    .btn-1 {
+                        border: 1px #000 solid;
+                        background-color: #fff ;
+                        &:hover {
+                                background-color: #f2f2f2;
+                        }
+                    }
+                    .btn-2 {
+                        border: none;
+                        background-color: #222 !important;
+                        color: #fff;
+                        &:hover {
+                                opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .information-works {
+        padding: 0 !important; 
+        display: flex;
+        width: 100%;
+        height: auto;
+        @include rsp("sm") {
+            flex-direction: column;
+        }
+        .if-box {
+            flex: 1; /* 各要素が均等にスペースを占有 */
+            max-width: 50%; /* 幅を最大50%に制限 */
+            text-align: center; /* 必要ならテキスト中央寄せ */
+            box-sizing: border-box; /* パディングやボーダーを幅に含む */
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 200px 0px;
+            color: #f2f2f2;
+            @include rsp("sm") {
+                width: 100% !important; 
+                max-width: 100% !important; /* 幅を最大50%に制限 */
+                padding: 50px 0px;
+            }    
+            .sec-title {
+                margin-bottom: 0px !important;
+                h2 {
+                    font-size: clamp(1.5rem, 1.259rem + 0.99vw, 2rem);
+                }
+                p {
+                    font-size: 16px;
+                }
+            }
+            .sec-content {
+                p {
+                    margin-bottom: 60px;
+                    text-align: center;
+                    line-height: 1.3;
+                }
+                .btn {
+                    @include rsp("sm") {
+                        flex-direction: column;
+                        width: 80%;
+                        margin: 0 auto;
+                        a {
+                            text-align: center;
+                        }
+                    }
+                }
+                .btn-3 {
+                    background-color: #f2f2f2;
+                    color: #111;
+                    &:hover {
+                        border: 1px #fff solid;
+                        background-color: transparent !important;
+                        color: #fff;    
+                    }
+                }
+                .btn-4 {
+                    border: 1px #f2f2f2 solid;
+                    background-color: transparent;
+                    color: #f2f2f2;
+                    &:hover {
+                        border: 1px #111 solid;
+                        background-color: #fff !important;
+                        color: #111;    
+                    }
+                }
+            }
+        }
+        .information {
+            background-image: url(/image/information.jpg);
+            object-fit: cover;
+            background-size: cover;        /* 画像を縦横比を保ったまま、要素の背景全体にフィット */
+            background-repeat: no-repeat;  /* 画像が繰り返し表示されないようにする */
+            background-position: center;   /* 背景画像が中央に位置するようにする */
+            overflow: hidden; /* 枠外を隠す */
+            position: relative; /* 必要に応じて相対配置 */
+            transition: transform 0.3s ease; /* スムーズなアニメーション */
+        }
+        .works {
+            background-image: url(/image/works.jpg);
+            background-size: cover;        /* 画像を縦横比を保ったまま、要素の背景全体にフィット */
+            background-repeat: no-repeat;  /* 画像が繰り返し表示されないようにする */
+            background-position: center;   /* 背景画像が中央に位置するようにする */
+            overflow: hidden; /* 枠外を隠す */
+            position: relative; /* 必要に応じて相対配置 */
+            transition: transform 0.3s ease; /* スムーズなアニメーション */
+        }
+    }
+    .contact {
+        text-align: center;
+        @include rsp("sm") {
+            .contact-content {
+                flex-direction: column;
+                .btn {
+                    width: 75%;
+                    max-width: 400px;
+                }
+            }
+        }
+        p {
+            margin-bottom: 32px;
+            font-size: clamp(1rem, 0.625rem + 1.5vw, 1.75rem);
+            font-weight: bolder;
+        }
+        .contact-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            .btn {
+                padding: 24px 60px;
+                border-radius: 100px;
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+            .btn-5 {
+                background-color: #fff;
+                color: #111;
+                border: #111 1px solid;
+                transition: all 0.3s ease;
+                &:hover {
+                    background-color: #f2f2f2;
+                }
+            }
+            .btn-6 {
+                background-color: #111;
+                color: #fff;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+        }
+    }
+}
+
+//footer
+footer {
+    background-color: #F8F8F8;
+    padding: clamp(2.25rem, 1.875rem + 1.5vw, 3rem) clamp(1.5rem, -2.75rem + 17vw, 10rem);
+    .footer-top {
+        display: flex;
+        margin-bottom: 100px;
+        .footer-logo {
+            margin-right: 60px;
+        }
+        .emblem {
+            margin-bottom: 10px;
+        }
+        nav {
+            ul {
+                list-style-type: disc; /* デフォルトの点を使用 */
+                list-style-position: inside; /* 点を項目の内側に表示 */
+                padding-left: 20px; /* 余白を調整 */
+                li {
+                    color: black; /* テキストの色を黒に設定 */
+                    margin-bottom: 32px; /* 下に10pxの間隔を開ける */
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                    &:hover {
+                        color: $color-main;
+                        transform: scale(1.1);
+                        transform-origin: left; /* 左端を基準にして拡大する */
+                    }
+                }
+                li::marker {
+                    color: green; /* 点の色を緑に変更 */
+                }
+                li:last-child {
+                    margin-bottom: 0; /* 最後の要素には余白をつけない */
+                }
+            }
+        }
+    }
+    .footer-under {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include rsp ("md") {
+            flex-direction: column;
+        }
+        @include rsp ("sm") {
+            flex-direction: column;
+            gap: 15px;
+            .footer-info {
+                flex-direction: column;
+                font-size: 12px;
+                
+            }
+        }
+        .company-name {
+            font-weight: 550;
+        }
+        .footer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+            .address {
+                display: flex;
+                gap: 10px;
+                @include rsp ("sm") {
+                    flex-direction: column;
+                    gap: 0px;
+                }
+            }
+        }
+        .small {
+            font-size: 10px;
+        }
+    }
+}
